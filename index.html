@@ -260,6 +260,26 @@
             transform: translateY(-4px);
         }
 
+        /* Washroom window - outer side (left side of washroom) */
+        .window-washroom {
+            top: 340px;
+            left: 128px;
+            width: 8px;
+            height: 50px;
+            transform: translateX(-4px);
+        }
+
+        /* Hall extension - fills gap between hall and washroom */
+        .hall-extension {
+            position: absolute;
+            top: 286px;
+            left: 295px;
+            width: 119px;
+            height: 135px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border: 2px solid #333;
+        }
+
 
 
         /* Hall to Porch door (bottom right corner facing porch) */
@@ -349,6 +369,9 @@
                 <div class="room-size">(132 sq ft)</div>
             </div>
 
+            <!-- Hall extension to fill gap -->
+            <div class="hall-extension"></div>
+
             <div class="room porch">
                 <div class="room-name">PORCH</div>
                 <div class="room-size">5 ft × 19 ft</div>
@@ -366,6 +389,7 @@
             <div class="window window-room2"></div>
             <div class="window window-room3"></div>
             <div class="window window-hall"></div>
+            <div class="window window-washroom"></div>
 
             <!-- Hall to Porch Door -->
             <div class="door door-hall-porch"></div>
