@@ -53,6 +53,31 @@
             background: #f9f9f9;
         }
 
+        /* Dimension labels */
+        .dimension-label {
+            position: absolute;
+            font-size: 12px;
+            font-weight: bold;
+            color: #333;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* Top dimension - 30 ft */
+        .dim-top {
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Left dimension - 27 ft */
+        .dim-left {
+            left: -35px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+        }
+
         .room {
             position: absolute;
             border: 2px solid #333;
@@ -339,6 +364,10 @@
 <body>
     <div class="container">
         <div class="floor-plan">
+            <!-- Dimension labels -->
+            <div class="dimension-label dim-top">30 ft</div>
+            <div class="dimension-label dim-left">27 ft</div>
+            
             <div class="room room1">
                 <div class="room-name">ROOM 1</div>
                 <div class="room-size">11 ft × 12 ft</div>
@@ -353,8 +382,8 @@
 
             <div class="room washroom">
                 <div class="room-name">WASHROOM</div>
-                <div class="room-size">7 ft × 5 ft</div>
-                <div class="room-size">(35 sq ft)</div>
+                <div class="room-size">8 ft × 3 ft</div>
+                <div class="room-size">(24 sq ft)</div>
             </div>
 
             <div class="room room3">
@@ -374,8 +403,8 @@
 
             <div class="room porch">
                 <div class="room-name">PORCH</div>
-                <div class="room-size">5 ft × 19 ft</div>
-                <div class="room-size">(95 sq ft)</div>
+                <div class="room-size">3 ft × 30 ft</div>
+                <div class="room-size">(90 sq ft)</div>
             </div>
 
             <!-- Doors -->
@@ -396,38 +425,50 @@
         </div>
 
         <!-- <h1>🏠 Floor Plan (30×27 ft)</h1>
-        <div class="dimensions">With 7×5 ft washroom and Room 3 at previous size</div> -->
+        <div class="dimensions">Properly scaled to fit 30×27 ft dimensions</div> -->
 
-        <div class="legend"></div>
-        <h3>📋 Room Details</h3>
-        <div class="legend-item">
-            <span class="legend-name">Room 1</span>
-            <span class="legend-area">132 sq ft</span>
+        <div class="legend">
+            <h3>📋 Room Details</h3>
+            <div class="legend-item">
+                <span class="legend-name">Room 1</span>
+                <span class="legend-area">132 sq ft</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-name">Room 2</span>
+                <span class="legend-area">132 sq ft</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-name">Washroom</span>
+                <span class="legend-area">24 sq ft</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-name">Room 3</span>
+                <span class="legend-area">132 sq ft</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-name">Hall</span>
+                <span class="legend-area">132 sq ft</span>
+            </div>
+            <div class="legend-item">
+                <span class="legend-name">Porch</span>
+                <span class="legend-area">90 sq ft</span>
+            </div>
+            <div class="legend-item" style="font-weight: bold; color: #e74c3c;">
+                <span class="legend-name">Total Built-up Area</span>
+                <span class="legend-area">642 sq ft</span>
+            </div>
         </div>
-        <div class="legend-item">
-            <span class="legend-name">Room 2</span>
-            <span class="legend-area">132 sq ft</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-name">Washroom</span>
-            <span class="legend-area">35 sq ft</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-name">Room 3</span>
-            <span class="legend-area">132 sq ft</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-name">Hall</span>
-            <span class="legend-area">132 sq ft</span>
-        </div>
-        <div class="legend-item">
-            <span class="legend-name">Porch</span>
-            <span class="legend-area">95 sq ft</span>
-        </div>
-        <div class="legend-item" style="font-weight: bold; color: #e74c3c;">
-            <span class="legend-name">Total Built-up Area</span>
-            <span class="legend-area">658 sq ft</span>
-        </div>
+
+        <!-- <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; font-size: 13px;">
+            <strong>💡 Layout Features:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Total dimensions: 30×27 ft (810 sq ft)</li>
+                <li>Room 1, 2, 3 & Hall: 11×12 ft each (132 sq ft)</li>
+                <li>Washroom: 8×3 ft (24 sq ft)</li>
+                <li>Porch: 3×30 ft (90 sq ft)</li>
+                <li>Properly proportioned layout with optimal space utilization</li>
+            </ul>
+        </div> -->
     </div>
     </div>
 </body>
