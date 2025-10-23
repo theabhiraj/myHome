@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Floor Plan - 30×27 ft (East Facing)</title>
+    <title>Floor Plan - 30×27 ft</title>
     <style>
         * {
             margin: 0;
@@ -50,12 +51,6 @@
             margin: 0 auto;
             border: 3px solid #333;
             background: #f9f9f9;
-            transform: scaleX(-1); /* This flips the entire layout horizontally */
-        }
-
-        /* All rooms and elements inside the floor plan need to be flipped back */
-        .floor-plan > * {
-            transform: scaleX(-1);
         }
 
         /* Dimension labels */
@@ -73,14 +68,14 @@
         .dim-top {
             top: -25px;
             left: 50%;
-            transform: translateX(-50%) scaleX(-1);
+            transform: translateX(-50%);
         }
 
         /* Left dimension - 27 ft */
         .dim-left {
             left: -35px;
             top: 50%;
-            transform: translateY(-50%) rotate(-90deg) scaleX(-1);
+            transform: translateY(-50%) rotate(-90deg);
         }
 
         .room {
@@ -97,7 +92,7 @@
         }
 
         .room:hover {
-            transform: scale(1.02) scaleX(-1);
+            transform: scale(1.02);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             z-index: 10;
         }
@@ -114,9 +109,45 @@
             text-align: center;
         }
 
-        /* Room 1 */
-        .room1 {
+        /* Porch - moved to top left */
+        .porch {
             top: 0;
+            left: 128px;
+            width: 286px;
+            height: 135px;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+        }
+
+        /* Room 3 - moved to top right */
+        .room3 {
+            top: 0;
+            left: 414px;
+            width: 286px;
+            height: 286px;
+            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
+        }
+
+        /* Hall - proper 11×12 ft dimensions */
+        .hall {
+            top: 135px;
+            left: 128px;
+            width: 286px;
+            height: 286px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        }
+
+        /* Washroom - positioned at right side */
+        .washroom {
+            top: 286px;
+            left: 581px;
+            width: 119px;
+            height: 135px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+        }
+
+        /* Room 1 - moved to bottom */
+        .room1 {
+            top: 421px;
             left: 128px;
             width: 286px;
             height: 286px;
@@ -124,49 +155,13 @@
             color: white;
         }
 
-        /* Room 2 */
+        /* Room 2 - moved to bottom */
         .room2 {
-            top: 0;
+            top: 421px;
             left: 414px;
             width: 286px;
             height: 286px;
             background: linear-gradient(135deg, #81ecec 0%, #00b894 100%);
-        }
-
-        /* Washroom - 7×5 ft */
-        .washroom {
-            top: 286px;
-            left: 128px;
-            width: 167px;
-            height: 135px;
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-        }
-
-        /* Room 3 */
-        .room3 {
-            top: 421px;
-            left: 128px;
-            width: 286px;
-            height: 286px;
-            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
-        }
-
-        /* Hall */
-        .hall {
-            top: 286px;
-            left: 414px;
-            width: 286px;
-            height: 286px;
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-        }
-
-        /* Porch */
-        .porch {
-            top: 572px;
-            left: 414px;
-            width: 286px;
-            height: 135px;
-            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
         }
 
         /* Door styles */
@@ -188,40 +183,40 @@
             border-radius: 50%;
         }
 
-        /* Room 1 door - opens to hall (bottom side of Room 1) */
-        .door-room1 {
+        /* Room 3 door - opens to hall (bottom side of Room 3, aligned with Room 2) */
+        .door-room3 {
             top: 286px;
+            left: 430px;
+            width: 50px;
+            height: 8px;
+            transform: translateY(-4px);
+        }
+
+        /* Washroom door - opens to hall (left side of washroom) */
+        .door-washroom {
+            top: 320px;
+            left: 581px;
+            width: 8px;
+            height: 40px;
+            transform: translateX(-4px);
+        }
+
+        /* Room 1 door - opens to hall (top side of Room 1) */
+        .door-room1 {
+            top: 421px;
             left: 348px;
             width: 50px;
             height: 8px;
-            transform: translateY(-4px) scaleX(-1);
+            transform: translateY(-4px);
         }
 
-        /* Room 2 door - opens to hall (bottom side of Room 2) */
+        /* Room 2 door - opens to hall (top side of Room 2) */
         .door-room2 {
-            top: 286px;
+            top: 421px;
             left: 428px;
             width: 50px;
             height: 8px;
-            transform: translateY(-4px) scaleX(-1);
-        }
-
-        /* Washroom door - opens to hall (right side of washroom) */
-        .door-washroom {
-            top: 320px;
-            left: 295px;
-            width: 8px;
-            height: 40px;
-            transform: translateX(-4px) scaleX(-1);
-        }
-
-        /* Room 3 door - opens to Room 1 (top side of Room 3) */
-        .door-room3 {
-            top: 421px;
-            left: 360px;
-            width: 50px;
-            height: 8px;
-            transform: translateY(-4px) scaleX(-1);
+            transform: translateY(-4px);
         }
 
         /* Window styles */
@@ -254,69 +249,69 @@
             background: #4682B4;
         }
 
-        /* Room 1 window - opposite Room 2 (left side of Room 1) */
-        .window-room1 {
+        /* Room 3 window - outer side (right side of Room 3) */
+        .window-room3 {
             top: 120px;
-            left: 128px;
+            left: 700px;
             width: 8px;
             height: 60px;
-            transform: translateX(-4px) scaleX(-1);
+            transform: translateX(-4px);
         }
 
-        /* Room 2 window - towards hall (bottom side of Room 2) */
-        .window-room2 {
-            top: 286px;
-            left: 550px;
+        /* Hall window - towards porch (top side of hall) - moved to left */
+        .window-hall {
+            top: 135px;
+            left: 180px;
             width: 60px;
             height: 8px;
-            transform: translateY(-4px) scaleX(-1);
+            transform: translateY(-4px);
         }
 
-        /* Room 3 window - opposite hall (left side of Room 3) */
-        .window-room3 {
+        /* Washroom window - outer side (right side of washroom) */
+        .window-washroom {
+            top: 340px;
+            left: 700px;
+            width: 8px;
+            height: 50px;
+            transform: translateX(-4px);
+        }
+
+        /* Room 1 window - opposite Room 2 (left side of Room 1) */
+        .window-room1 {
             top: 540px;
             left: 128px;
             width: 8px;
             height: 60px;
-            transform: translateX(-4px) scaleX(-1);
+            transform: translateX(-4px);
         }
 
-        /* Hall window - towards porch (bottom left corner of hall) */
-        .window-hall {
-            top: 572px;
-            left: 430px;
-            width: 60px;
-            height: 8px;
-            transform: translateY(-4px) scaleX(-1);
-        }
-
-        /* Washroom window - outer side (left side of washroom) */
-        .window-washroom {
-            top: 340px;
-            left: 128px;
+        /* Room 2 window - right side (like Room 3) */
+        .window-room2 {
+            top: 540px;
+            left: 700px;
             width: 8px;
-            height: 50px;
-            transform: translateX(-4px) scaleX(-1);
+            height: 60px;
+            transform: translateX(-4px);
         }
 
-        /* Hall extension - fills gap between hall and washroom */
+        /* Hall extension - fill the gap between hall and washroom */
         .hall-extension {
             position: absolute;
             top: 286px;
-            left: 295px;
-            width: 119px;
+            left: 414px;
+            width: 167px;
             height: 135px;
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
             border: 2px solid #333;
         }
 
-        /* Hall to Porch door (bottom right corner facing porch) */
+        /* Hall to Porch door (top side of hall facing porch) - moved to right */
         .door-hall-porch {
-            top: 572px;
-            left: 650px;
+            top: 135px;
+            left: 320px;
             width: 50px;
             height: 8px;
-            transform: translateY(-4px) scaleX(-1);
+            transform: translateY(-4px);
         }
 
         .legend {
@@ -354,11 +349,7 @@
             .floor-plan {
                 width: 100%;
                 height: 400px;
-                transform: scale(0.8) scaleX(-1);
-            }
-            
-            .floor-plan > * {
-                transform: scaleX(-1);
+                transform: scale(0.8);
             }
 
             .container {
@@ -367,6 +358,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="floor-plan">
@@ -430,8 +422,8 @@
             <div class="door door-hall-porch"></div>
         </div>
 
-        <h1>🏠 Floor Plan - 30×27 ft (East Facing)</h1>
-        <div class="dimensions">Same layout, now oriented to face East</div>
+        <!-- <h1>🏠 Floor Plan (30×27 ft)</h1>
+        <div class="dimensions">Properly scaled to fit 30×27 ft dimensions</div> -->
 
         <div class="legend">
             <h3>📋 Room Details</h3>
@@ -464,6 +456,19 @@
                 <span class="legend-area">642 sq ft</span>
             </div>
         </div>
+
+        <!-- <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; font-size: 13px;">
+            <strong>💡 Layout Features:</strong>
+            <ul style="margin-left: 20px; margin-top: 10px;">
+                <li>Total dimensions: 30×27 ft (810 sq ft)</li>
+                <li>Room 1, 2, 3 & Hall: 11×12 ft each (132 sq ft)</li>
+                <li>Washroom: 8×3 ft (24 sq ft)</li>
+                <li>Porch: 3×30 ft (90 sq ft)</li>
+                <li>Properly proportioned layout with optimal space utilization</li>
+            </ul>
+        </div> -->
+    </div>
     </div>
 </body>
+
 </html>
