@@ -4,473 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Floor Plan - 30×27 ft</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 1000px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-
-        .dimensions {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
-
-        .floor-plan {
-            position: relative;
-            width: 700px;
-            height: 707px;
-            margin: 0 auto;
-            border: 3px solid #333;
-            background: #f9f9f9;
-        }
-
-        /* Dimension labels */
-        .dimension-label {
-            position: absolute;
-            font-size: 12px;
-            font-weight: bold;
-            color: #333;
-            background: rgba(255, 255, 255, 0.8);
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
-
-        /* Top dimension - 30 ft */
-        .dim-top {
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        /* Left dimension - 27 ft */
-        .dim-left {
-            left: -35px;
-            top: 50%;
-            transform: translateY(-50%) rotate(-90deg);
-        }
-
-        .room {
-            position: absolute;
-            border: 2px solid #333;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .room:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 10;
-        }
-
-        .room-name {
-            font-size: 14px;
-            margin-bottom: 5px;
-            text-align: center;
-        }
-
-        .room-size {
-            font-size: 11px;
-            color: #666;
-            text-align: center;
-        }
-
-        /* Room 1 */
-        .room1 {
-            top: 0;
-            left: 128px;
-            width: 286px;
-            height: 286px;
-            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
-            color: white;
-        }
-
-        /* Room 2 */
-        .room2 {
-            top: 0;
-            left: 414px;
-            width: 286px;
-            height: 286px;
-            background: linear-gradient(135deg, #81ecec 0%, #00b894 100%);
-        }
-
-        /* Washroom - 7×5 ft */
-        .washroom {
-            top: 286px;
-            left: 128px;
-            width: 167px;
-            height: 135px;
-            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
-        }
-
-        /* Room 3 */
-        .room3 {
-            top: 421px;
-            left: 128px;
-            width: 286px;
-            height: 286px;
-            background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
-        }
-
-        /* Hall */
-        .hall {
-            top: 286px;
-            left: 414px;
-            width: 286px;
-            height: 286px;
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-        }
-
-        /* Porch */
-        .porch {
-            top: 572px;
-            left: 414px;
-            width: 286px;
-            height: 135px;
-            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
-        }
-
-        /* Door styles */
-        .door {
-            position: absolute;
-            background: #8B4513;
-            z-index: 20;
-        }
-
-        .door::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 8px;
-            height: 8px;
-            background: #FFD700;
-            border-radius: 50%;
-        }
-
-        /* Room 1 door - opens to hall (bottom side of Room 1) */
-        .door-room1 {
-            top: 286px;
-            left: 348px;
-            width: 50px;
-            height: 8px;
-            transform: translateY(-4px);
-        }
-
-        /* Room 2 door - opens to hall (bottom side of Room 2) */
-        .door-room2 {
-            top: 286px;
-            left: 428px;
-            width: 50px;
-            height: 8px;
-            transform: translateY(-4px);
-        }
-
-        /* Washroom door - opens to hall (right side of washroom) */
-        .door-washroom {
-            top: 320px;
-            left: 295px;
-            width: 8px;
-            height: 40px;
-            transform: translateX(-4px);
-        }
-
-        /* Room 3 door - opens to Room 1 (top side of Room 3) */
-        .door-room3 {
-            top: 421px;
-            left: 360px;
-            width: 50px;
-            height: 8px;
-            transform: translateY(-4px);
-        }
-
-        /* Window styles */
-        .window {
-            position: absolute;
-            background: #87CEEB;
-            border: 2px solid #4682B4;
-            z-index: 15;
-        }
-
-        .window::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 2px;
-            height: 100%;
-            background: #4682B4;
-        }
-
-        .window::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 2px;
-            background: #4682B4;
-        }
-
-        /* Room 1 window - opposite Room 2 (left side of Room 1) */
-        .window-room1 {
-            top: 120px;
-            left: 128px;
-            width: 8px;
-            height: 60px;
-            transform: translateX(-4px);
-        }
-
-        /* Room 2 window - towards hall (bottom side of Room 2) */
-        .window-room2 {
-            top: 286px;
-            left: 550px;
-            width: 60px;
-            height: 8px;
-            transform: translateY(-4px);
-        }
-
-        /* Room 3 window - opposite hall (left side of Room 3) */
-        .window-room3 {
-            top: 540px;
-            left: 128px;
-            width: 8px;
-            height: 60px;
-            transform: translateX(-4px);
-        }
-
-        /* Hall window - towards porch (bottom left corner of hall) */
-        .window-hall {
-            top: 572px;
-            left: 430px;
-            width: 60px;
-            height: 8px;
-            transform: translateY(-4px);
-        }
-
-        /* Washroom window - outer side (left side of washroom) */
-        .window-washroom {
-            top: 340px;
-            left: 128px;
-            width: 8px;
-            height: 50px;
-            transform: translateX(-4px);
-        }
-
-        /* Hall extension - fills gap between hall and washroom */
-        .hall-extension {
-            position: absolute;
-            top: 286px;
-            left: 295px;
-            width: 119px;
-            height: 135px;
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            border: 2px solid #333;
-        }
-
-
-
-        /* Hall to Porch door (bottom right corner facing porch) */
-        .door-hall-porch {
-            top: 572px;
-            left: 650px;
-            width: 50px;
-            height: 8px;
-            transform: translateY(-4px);
-        }
-
-        .legend {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .legend h3 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .legend-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .legend-item:last-child {
-            border-bottom: none;
-        }
-
-        .legend-name {
-            font-weight: 600;
-        }
-
-        .legend-area {
-            color: #666;
-        }
-
-        @media (max-width: 768px) {
-            .floor-plan {
-                width: 100%;
-                height: 400px;
-                transform: scale(0.8);
-            }
-
-            .container {
-                padding: 15px;
-            }
-        }
-    </style>
+    <title>Layout</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
     <div class="container">
-        <div class="floor-plan">
-            <!-- Dimension labels -->
-            <div class="dimension-label dim-top">30 ft</div>
-            <div class="dimension-label dim-left">27 ft</div>
-            
-            <div class="room room1">
-                <div class="room-name">ROOM 1</div>
-                <div class="room-size">11 ft × 12 ft</div>
-                <div class="room-size">(132 sq ft)</div>
-            </div>
+        <div class="direction north">N 23 feet </div>
+        <div class="direction south">S 23 feet</div>
+        <div class="direction east">E 27 feet</div>
+        <div class="direction west">W 27 feet</div>
 
-            <div class="room room2">
-                <div class="room-name">ROOM 2</div>
-                <div class="room-size">11 ft × 12 ft</div>
-                <div class="room-size">(132 sq ft)</div>
-            </div>
-
-            <div class="room washroom">
-                <div class="room-name">WASHROOM</div>
-                <div class="room-size">8 ft × 3 ft</div>
-                <div class="room-size">(24 sq ft)</div>
-            </div>
-
-            <div class="room room3">
-                <div class="room-name">ROOM 3</div>
-                <div class="room-size">11 ft × 12 ft</div>
-                <div class="room-size">(132 sq ft)</div>
-            </div>
-
-            <div class="room hall">
-                <div class="room-name">HALL</div>
-                <div class="room-size">11 ft × 12 ft</div>
-                <div class="room-size">(132 sq ft)</div>
-            </div>
-
-            <!-- Hall extension to fill gap -->
-            <div class="hall-extension"></div>
-
-            <div class="room porch">
-                <div class="room-name">PORCH</div>
-                <div class="room-size">3 ft × 30 ft</div>
-                <div class="room-size">(90 sq ft)</div>
-            </div>
-
-            <!-- Doors -->
-            <div class="door door-room1"></div>
-            <div class="door door-room2"></div>
-            <div class="door door-washroom"></div>
-            <div class="door door-room3"></div>
-
-            <!-- Windows -->
-            <div class="window window-room1"></div>
-            <div class="window window-room2"></div>
-            <div class="window window-room3"></div>
-            <div class="window window-hall"></div>
-            <div class="window window-washroom"></div>
-
-            <!-- Hall to Porch Door -->
-            <div class="door door-hall-porch"></div>
+        <div class="road">
+            <div class="road-line"></div>
         </div>
 
-        <!-- <h1>🏠 Floor Plan (30×27 ft)</h1>
-        <div class="dimensions">Properly scaled to fit 30×27 ft dimensions</div> -->
+        <div class="main">
+            <div class="room-3">
+                <div class="door"></div>
+                <div class="window"></div>
+                <span>Room 3</span>
+                <p>10"S|N" * 12"W"</p>
+            </div>
 
-        <div class="legend">
-            <h3>📋 Room Details</h3>
-            <div class="legend-item">
-                <span class="legend-name">Room 1</span>
-                <span class="legend-area">132 sq ft</span>
+            <div class="room-2">
+                <div class="door"></div>
+                <div class="window"></div>
+                <span>Room 2</span><br><br>
+                <p>11"South" * 12"West"</p>
             </div>
-            <div class="legend-item">
-                <span class="legend-name">Room 2</span>
-                <span class="legend-area">132 sq ft</span>
+
+            <div class="room-1">
+                <div class="door"></div>
+                <div class="window"></div>
+                <span>Room 1</span>
+                <p>11"South" * 12"West"</p>
             </div>
-            <div class="legend-item">
-                <span class="legend-name">Washroom</span>
-                <span class="legend-area">24 sq ft</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-name">Room 3</span>
-                <span class="legend-area">132 sq ft</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-name">Hall</span>
-                <span class="legend-area">132 sq ft</span>
-            </div>
-            <div class="legend-item">
-                <span class="legend-name">Porch</span>
-                <span class="legend-area">90 sq ft</span>
-            </div>
-            <div class="legend-item" style="font-weight: bold; color: #e74c3c;">
-                <span class="legend-name">Total Built-up Area</span>
-                <span class="legend-area">642 sq ft</span>
-            </div>
+
+            <!-- <div class="porch">
+                <span>Porch</span>
+            </div> -->
         </div>
+    </div>
 
-        <!-- <div style="margin-top: 20px; padding: 15px; background: #fff3cd; border-radius: 8px; font-size: 13px;">
-            <strong>💡 Layout Features:</strong>
-            <ul style="margin-left: 20px; margin-top: 10px;">
-                <li>Total dimensions: 30×27 ft (810 sq ft)</li>
-                <li>Room 1, 2, 3 & Hall: 11×12 ft each (132 sq ft)</li>
-                <li>Washroom: 8×3 ft (24 sq ft)</li>
-                <li>Porch: 3×30 ft (90 sq ft)</li>
-                <li>Properly proportioned layout with optimal space utilization</li>
-            </ul>
-        </div> -->
-    </div>
-    </div>
 </body>
 
 </html>

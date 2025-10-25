@@ -1,0 +1,220 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    padding: 30px;
+}
+
+.main {
+    width: 27vw;
+    height: 23vw;
+    max-width: 810px;
+    max-height: 690px;
+    min-width: 540px;
+    min-height: 460px;
+    background-color: #f0f0f0;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 2px;
+    column-gap: 8px;
+    padding: 15px;
+    border: 2px solid #333;
+}
+/* Direction labels */
+.direction {
+    position: absolute;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.north {
+    top: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.south {
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.east {
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.west {
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Room positioning */
+.room-3 {
+    grid-column: 1;
+    grid-row: 1;
+    background-color: aqua;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 90%;
+    height: 90%;
+    align-self: end;
+}
+
+
+.room-2 {
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #ff0000;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.room-1 {
+    grid-column: 2;
+    grid-row: 2;
+    background-color: #00ff00;
+    border: 3px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.road {
+    width: 80px;
+    height: 23vw;
+    max-height: 690px;
+    min-height: 460px;
+    background-color: #3a3636;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+}
+
+.road-line {
+    width: 3px;
+    height: 85%;
+    background-color: yellow;
+    position: absolute;
+}
+
+/* Room labels */
+span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    z-index: 6;
+    position: relative;
+}
+.main p {
+    font-size: 10px;
+    color: #3a3636;
+}
+.road span {
+    color: white;
+    font-size: 12px;
+}
+
+/* Door and window elements */
+.door,
+.window {
+    position: absolute;
+    background-color: #8B4513;
+    border: 1px solid black;
+}
+
+.door {
+    width: 15px;
+    height: 30px;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.room-1 .door {
+    width: 15px;
+    height: 30px;
+    top: 2px;
+    left: 5%;
+    transform: translateX(-50%);
+}
+
+/* Room 2 specific door positioning - faces towards room 3, slightly right towards room 1 */
+.room-2 .door {
+    width: 15px;
+    height: 30px;
+    top: 2px;
+    left: 95%;
+    transform: translateX(-50%);
+}
+
+.room-3 .door {
+    width: 30px;
+    height: 15px;
+    right: 3px;
+    top: 70%;
+    bottom: auto;
+    left: auto;
+    transform: translateY(-50%);
+}
+
+.window {
+    width: 25px;
+    height: 15px;
+    top: 10px;
+    right: 10px;
+    background-color: #87CEEB;
+}
+
+/* Room 3 window positioned on north (top) side */
+.room-3 .window {
+    top: 2px;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+}
+
+/* Room 1 and Room 2 windows positioned on south side center */
+.room-1 .window,
+.room-2 .window {
+    bottom: 2px;
+    left: 50%;
+    top: auto;
+    right: auto;
+    transform: translateX(-50%);
+}
